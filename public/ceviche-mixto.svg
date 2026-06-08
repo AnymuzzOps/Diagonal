@@ -1,0 +1,50 @@
+<svg width="900" height="620" viewBox="0 0 900 620" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Ceviche mixto</title>
+  <desc id="desc">Plato de ceviche mixto con pescado, camarón, cebolla morada, cilantro y limón.</desc>
+  <rect width="900" height="620" fill="#f7f3eb"/>
+  <rect x="0" y="0" width="900" height="620" fill="url(#bg)" opacity="0.52"/>
+  <ellipse cx="452" cy="334" rx="305" ry="190" fill="#101114" opacity="0.18"/>
+  <ellipse cx="450" cy="300" rx="305" ry="185" fill="#ffffff"/>
+  <ellipse cx="450" cy="300" rx="250" ry="142" fill="#f1f5f2"/>
+  <path d="M225 302C263 226 352 181 462 184C573 187 666 239 684 316C632 399 540 432 438 421C337 411 260 372 225 302Z" fill="#fff7e8"/>
+  <g opacity="0.97">
+    <ellipse cx="370" cy="268" rx="58" ry="32" transform="rotate(-16 370 268)" fill="#ffdfbf"/>
+    <ellipse cx="497" cy="275" rx="61" ry="34" transform="rotate(12 497 275)" fill="#ffd6b3"/>
+    <ellipse cx="433" cy="345" rx="67" ry="34" transform="rotate(-7 433 345)" fill="#ffe7c8"/>
+    <ellipse cx="573" cy="335" rx="54" ry="29" transform="rotate(-18 573 335)" fill="#ffdcc0"/>
+    <path d="M300 333C334 299 376 301 405 330C370 361 333 365 300 333Z" fill="#ff8a5b"/>
+    <path d="M516 228C548 204 586 212 605 246C570 271 541 269 516 228Z" fill="#ff8a5b"/>
+    <path d="M606 287C640 260 683 270 700 307C664 330 632 326 606 287Z" fill="#ff8a5b"/>
+  </g>
+  <g stroke="#7b1f5a" stroke-width="10" stroke-linecap="round" opacity="0.9">
+    <path d="M342 220C377 248 418 246 459 220"/>
+    <path d="M512 360C552 386 590 380 631 351"/>
+    <path d="M281 290C314 316 348 314 386 288"/>
+    <path d="M476 309C511 333 548 331 588 303"/>
+  </g>
+  <g fill="#14924a">
+    <circle cx="389" cy="216" r="11"/>
+    <circle cx="472" cy="238" r="9"/>
+    <circle cx="563" cy="286" r="10"/>
+    <circle cx="334" cy="354" r="9"/>
+    <circle cx="516" cy="390" r="11"/>
+    <circle cx="640" cy="352" r="8"/>
+    <path d="M430 252L463 235L455 274L430 252Z"/>
+    <path d="M594 236L632 225L617 261L594 236Z"/>
+    <path d="M367 386L405 374L390 410L367 386Z"/>
+  </g>
+  <g>
+    <circle cx="661" cy="200" r="48" fill="#f7d45a"/>
+    <path d="M632 238L688 164" stroke="#fff8c8" stroke-width="8" stroke-linecap="round"/>
+    <path d="M619 200H704" stroke="#fff8c8" stroke-width="7" stroke-linecap="round" opacity="0.8"/>
+  </g>
+  <path d="M94 108L226 35" stroke="#e21f26" stroke-width="28" stroke-linecap="round" opacity="0.92"/>
+  <path d="M68 153L164 100" stroke="#101114" stroke-width="18" stroke-linecap="round" opacity="0.92"/>
+  <defs>
+    <radialGradient id="bg" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(734 82) rotate(136) scale(780 782)">
+      <stop stop-color="#e21f26" stop-opacity="0.28"/>
+      <stop offset="0.55" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#101114" stop-opacity="0.16"/>
+    </radialGradient>
+  </defs>
+</svg>
