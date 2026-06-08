@@ -207,15 +207,15 @@ function HeroBanner({ onCartOpen }) {
 
         <div className="relative mx-auto w-full max-w-2xl">
           <div className="absolute -inset-5 rotate-[-7deg] rounded-[3rem] bg-brand-red/90 blur-sm" />
-          <div className="absolute right-4 top-4 z-10 rounded-3xl border border-white/15 bg-graphite px-5 py-4 text-white shadow-2xl shadow-black/30 sm:-right-4 sm:-top-6">
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-brand-red">Desde</p>
-            <p className="text-3xl font-black leading-none text-white">$6.900</p>
+          <div className="absolute right-4 top-4 z-10 rounded-3xl border border-brand-red/20 bg-white px-5 py-4 text-[#101114] shadow-2xl shadow-black/30 sm:-right-4 sm:-top-6" style={{ background: '#ffffff', color: '#101114' }}>
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-brand-red" style={{ color: '#e21f26' }}>Desde</p>
+            <p className="text-3xl font-black leading-none text-[#101114]" style={{ color: '#101114' }}>$6.900</p>
           </div>
           <div className="relative overflow-hidden rounded-[3rem] border border-white/10 bg-white p-3 shadow-2xl shadow-black/40">
             <img src="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&w=1300&q=85" alt="Roll Especial Diagonal" className="h-[360px] w-full rounded-[2.4rem] object-cover sm:h-[520px]" />
-            <div className="absolute bottom-6 left-6 right-6 rounded-3xl bg-white/95 px-5 py-4 text-graphite shadow-2xl backdrop-blur sm:bottom-8 sm:left-8 sm:right-auto">
-              <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-red">Diagonal Sushi</p>
-              <p className="mt-1 text-xl font-black sm:text-2xl">Sushi fresco para disfrutar en Talca.</p>
+            <div className="absolute bottom-6 left-6 right-6 rounded-3xl bg-white/95 px-5 py-4 text-[#101114] shadow-2xl backdrop-blur sm:bottom-8 sm:left-8 sm:right-auto" style={{ background: 'rgba(255,255,255,0.96)', color: '#101114' }}>
+              <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-red" style={{ color: '#e21f26' }}>Diagonal Sushi</p>
+              <p className="mt-1 text-xl font-black text-[#101114] sm:text-2xl" style={{ color: '#101114' }}>Sushi fresco para disfrutar en Talca.</p>
             </div>
           </div>
         </div>
@@ -373,13 +373,13 @@ function Locales() {
     <>
       <section id="locales" className="bg-white px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl space-y-8">
-          <div className="rounded-[2.5rem] bg-graphite p-8 text-white shadow-2xl shadow-black/20 lg:flex lg:items-center lg:justify-between lg:gap-8">
+          <div className="rounded-[2.5rem] bg-[#101114] p-8 text-white shadow-2xl shadow-black/20 lg:flex lg:items-center lg:justify-between lg:gap-8" style={{ background: '#101114', color: '#ffffff' }}>
             <div>
-              <p className="text-sm font-black uppercase tracking-[0.24em] text-brand-red">Locales</p>
-              <h2 className="mt-4 text-4xl font-black">Diagonal Sushi Talca</h2>
-              <div className="mt-6 space-y-3 text-white/80">
-                <p><strong className="text-white">Dirección:</strong> Av. Isidoro del Solar 211, Talca</p>
-                <p><strong className="text-white">Horario:</strong> Lun–Dom 12:00 a 23:30 hrs</p>
+              <p className="text-sm font-black uppercase tracking-[0.24em] text-brand-red" style={{ color: '#e21f26' }}>Locales</p>
+              <h2 className="mt-4 text-4xl font-black text-white" style={{ color: '#ffffff' }}>Diagonal Sushi Talca</h2>
+              <div className="mt-6 space-y-3 text-white/85" style={{ color: 'rgba(255,255,255,0.86)' }}>
+                <p><strong style={{ color: '#ffffff' }}>Dirección:</strong> Av. Isidoro del Solar 211, Talca</p>
+                <p><strong style={{ color: '#ffffff' }}>Horario:</strong> Lun–Dom 12:00 a 23:30 hrs</p>
               </div>
             </div>
             <a href={mapsUrl} target="_blank" rel="noreferrer" className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-red px-6 py-4 text-sm font-black uppercase tracking-[0.16em] text-white transition hover:-translate-y-1 hover:bg-red-700 lg:mt-0">
@@ -451,11 +451,18 @@ function FloatingCartButton({ cartCount, onCartOpen }) {
   return (
     <button
       onClick={onCartOpen}
-      className="fixed bottom-5 right-5 z-50 flex h-16 w-16 items-center justify-center rounded-3xl border border-white/15 bg-brand-red text-white shadow-2xl shadow-brand-red/35 transition hover:-translate-y-1 hover:bg-red-700 sm:bottom-7 sm:right-7"
+      className="fixed bottom-5 right-5 z-50 flex items-center gap-3 rounded-full border border-white/20 bg-brand-red px-5 py-4 text-white shadow-2xl shadow-brand-red/40 transition hover:-translate-y-1 hover:bg-red-700 sm:bottom-7 sm:right-7 sm:px-6"
+      style={{ background: '#e21f26', color: '#ffffff' }}
       aria-label="Abrir carrito"
     >
-      <ShoppingBag size={25} />
-      {cartCount > 0 && <span className="absolute -right-2 -top-2 grid h-7 min-w-7 place-items-center rounded-full border-2 border-brand-red bg-white px-2 text-xs font-black text-brand-red shadow-lg">{cartCount}</span>}
+      <span className="grid h-12 w-12 place-items-center rounded-full bg-[#101114] text-white shadow-lg" style={{ background: '#101114', color: '#ffffff' }}>
+        <ShoppingBag size={26} />
+      </span>
+      <span className="flex flex-col items-start leading-none">
+        <span className="text-base font-black uppercase tracking-[0.12em] text-white" style={{ color: '#ffffff' }}>Carrito</span>
+        <span className="mt-1 text-xs font-bold text-white/85" style={{ color: 'rgba(255,255,255,0.86)' }}>{cartCount > 0 ? `${cartCount} producto${cartCount === 1 ? '' : 's'}` : 'Ver pedido'}</span>
+      </span>
+      {cartCount > 0 && <span className="absolute -right-2 -top-2 grid h-8 min-w-8 place-items-center rounded-full border-2 border-brand-red bg-white px-2 text-sm font-black text-brand-red shadow-lg" style={{ background: '#ffffff', color: '#e21f26' }}>{cartCount}</span>}
     </button>
   )
 }
