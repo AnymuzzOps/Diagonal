@@ -11,6 +11,12 @@ Landing page moderna para **DIAGONAL SUSHI** construida con React + Vite + Tailw
 - Generación de pedido por WhatsApp con detalle de productos y total.
 - Bloques breves de local y Talca con enlace a Google Maps.
 
+## Despliegue en GitHub Pages desde branch
+
+Este repo queda preparado para **Deploy from a branch** usando `main` y carpeta `/ (root)`.
+
+La página no queda en blanco porque `index.html` carga React, ReactDOM, Babel y Tailwind desde CDN, y luego ejecuta `src/main.jsx` como JSX de navegador. Si prefieres un despliegue compilado con Vite, usa `npm install` y `npm run build` en un entorno con acceso al registro npm.
+
 ## Configuración editable
 
 - Productos: editar el array `products` en `src/main.jsx`.

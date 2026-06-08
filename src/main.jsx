@@ -1,7 +1,4 @@
-import React, { useMemo, useState } from 'react'
-import { createRoot } from 'react-dom/client'
-import './styles.css'
-
+const { useMemo, useState } = React
 
 const Icon = ({ children, size = 20, className = '' }) => (
   <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -141,7 +138,7 @@ function Header({ cartCount, onCartOpen }) {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-graphite/90 shadow-2xl shadow-black/30 backdrop-blur-xl">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <button className="flex items-center gap-3" onClick={() => scrollToId('inicio')} aria-label="Ir al inicio">
-          <img src="/logo-diagonal.svg" alt="Diagonal Sushi" className="h-11 w-11 rounded-2xl" />
+          <img src="./public/logo-diagonal.svg" alt="Diagonal Sushi" className="h-11 w-11 rounded-2xl" />
           <div className="text-left leading-none">
             <span className="block text-lg font-black tracking-[0.16em] text-white">DIAGONAL</span>
             <span className="block text-xs font-bold tracking-[0.32em] text-brand-red">SUSHI</span>
@@ -415,7 +412,7 @@ function Footer() {
     <footer className="bg-black px-4 py-10 text-white sm:px-6 lg:px-8">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 md:flex-row">
         <div className="flex items-center gap-3">
-          <img src="/logo-diagonal.svg" alt="Diagonal Sushi" className="h-10 w-10 rounded-xl" />
+          <img src="./public/logo-diagonal.svg" alt="Diagonal Sushi" className="h-10 w-10 rounded-xl" />
           <p className="text-sm text-white/60">© 2026 Diagonal Sushi. Todos los derechos reservados.</p>
         </div>
         <div className="flex items-center gap-3">
@@ -476,4 +473,4 @@ function App() {
   )
 }
 
-createRoot(document.getElementById('root')).render(<App />)
+ReactDOM.createRoot(document.getElementById('root')).render(<App />)
