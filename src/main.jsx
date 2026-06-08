@@ -16,7 +16,7 @@ const MapPin = ({ size = 18 }) => <Icon size={size}><path d="M20 10c0 5-8 12-8 1
 const Instagram = ({ size = 18 }) => <Icon size={size}><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17.5 6.5h.01" /></Icon>
 const Facebook = ({ size = 18 }) => <Icon size={size}><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3Z" /></Icon>
 
-const WHATSAPP_NUMBER = '+569XXXXXXXX'
+const WHATSAPP_NUMBER = '+569 5319 4098'
 
 const products = [
   {
@@ -135,7 +135,7 @@ function Header({ cartCount, onCartOpen }) {
   }
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-graphite/90 shadow-2xl shadow-black/30 backdrop-blur-xl">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 shadow-2xl shadow-black/30 backdrop-blur-xl" style={{ background: 'rgba(10, 10, 12, 0.88)', backdropFilter: 'blur(14px)' }}>
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <button className="flex items-center gap-3" onClick={() => scrollToId('inicio')} aria-label="Ir al inicio">
           <img src="./public/logo-diagonal.svg" alt="Diagonal Sushi" className="h-11 w-11 rounded-2xl" />
@@ -200,7 +200,7 @@ function HeroBanner({ onCartOpen }) {
             <button onClick={() => scrollToId('carta')} className="rounded-full bg-brand-red px-8 py-4 text-sm font-black uppercase tracking-[0.18em] text-white shadow-2xl shadow-brand-red/30 transition hover:-translate-y-1 hover:bg-red-600">
               Ver carta
             </button>
-            <button onClick={onCartOpen} className="rounded-full border border-white/20 bg-white px-8 py-4 text-sm font-black uppercase tracking-[0.18em] text-graphite transition hover:-translate-y-1 hover:bg-white/90">
+            <button onClick={onCartOpen} className="rounded-full border-2 border-white bg-white px-8 py-4 text-sm font-black uppercase tracking-[0.18em] text-[#101114] shadow-2xl shadow-black/20 transition hover:-translate-y-1 hover:border-brand-red hover:bg-brand-red hover:text-white hover:shadow-brand-red/30">
               Ir al carrito
             </button>
           </div>
@@ -292,8 +292,11 @@ function MenuSection({ cart, onAdd, onDecrease }) {
 function CartDrawer({ isOpen, cartItems, subtotal, onClose, onAdd, onDecrease, onRemove }) {
   const total = subtotal
   const whatsappLink = useMemo(() => {
-    const detail = cartItems.map(({ product, quantity }) => `• ${quantity} x ${product.name} - ${formatPrice(product.price * quantity)}`).join('\n')
-    const message = `Hola, quiero hacer el siguiente pedido en Diagonal Sushi:\n${detail}\n\nTotal: ${formatPrice(total)}`
+    const detail = cartItems
+      .map(({ product, quantity }) => `${quantity}x ${product.name} - Unitario: ${formatPrice(product.price)} - Subtotal: ${formatPrice(product.price * quantity)}`)
+      .join('\n')
+    const message = `Hola, quiero hacer el siguiente pedido en Diagonal Sushi:\n\n${detail}\n\nTotal: ${formatPrice(total)}`
+
     return `https://wa.me/${WHATSAPP_NUMBER.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`
   }, [cartItems, total])
 
@@ -352,10 +355,12 @@ function CartDrawer({ isOpen, cartItems, subtotal, onClose, onAdd, onDecrease, o
             <div className="flex justify-between text-sm font-bold text-neutral-600"><span>Subtotal</span><span>{formatPrice(subtotal)}</span></div>
             <div className="flex justify-between text-xl font-black text-graphite"><span>Total final</span><span>{formatPrice(total)}</span></div>
           </div>
-          <a href={cartItems.length ? whatsappLink : undefined} target="_blank" rel="noreferrer" className={`mt-4 block rounded-full px-6 py-4 text-center text-sm font-black uppercase tracking-[0.16em] text-white ${cartItems.length ? 'bg-brand-red hover:bg-red-600' : 'pointer-events-none bg-neutral-300'}`}>
-            Finalizar pedido
-          </a>
-          <p className="mt-3 text-center text-xs text-neutral-400">WhatsApp editable: {WHATSAPP_NUMBER}</p>
+          {cartItems.length > 0 && (
+            <a href={whatsappLink} target="_blank" rel="noreferrer" className="mt-4 block w-full rounded-full bg-brand-red px-6 py-4 text-center text-sm font-black uppercase tracking-[0.16em] text-white shadow-xl shadow-brand-red/25 transition hover:-translate-y-0.5 hover:bg-red-700 hover:shadow-brand-red/40">
+              Finalizar pedido
+            </a>
+          )}
+          <p className="mt-3 text-center text-xs text-neutral-400">Pedido vía WhatsApp: {WHATSAPP_NUMBER}</p>
         </div>
       </aside>
     </div>
@@ -368,25 +373,43 @@ function Locales() {
   return (
     <>
       <section id="locales" className="bg-white px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <div className="rounded-[2.5rem] bg-graphite p-8 text-white shadow-2xl shadow-black/20">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-brand-red">Locales</p>
-            <h2 className="mt-4 text-4xl font-black">Diagonal Sushi Talca</h2>
-            <div className="mt-8 space-y-4 text-white/80">
-              <p><strong className="text-white">Dirección:</strong> Av. Isidoro del Solar 211, Talca</p>
-              <p><strong className="text-white">Horario:</strong> Lun–Dom 12:00 a 23:30 hrs</p>
+        <div className="mx-auto max-w-7xl space-y-8">
+          <div className="rounded-[2.5rem] bg-graphite p-8 text-white shadow-2xl shadow-black/20 lg:flex lg:items-center lg:justify-between lg:gap-8">
+            <div>
+              <p className="text-sm font-black uppercase tracking-[0.24em] text-brand-red">Locales</p>
+              <h2 className="mt-4 text-4xl font-black">Diagonal Sushi Talca</h2>
+              <div className="mt-6 space-y-3 text-white/80">
+                <p><strong className="text-white">Dirección:</strong> Av. Isidoro del Solar 211, Talca</p>
+                <p><strong className="text-white">Horario:</strong> Lun–Dom 12:00 a 23:30 hrs</p>
+              </div>
             </div>
-            <a href={mapsUrl} target="_blank" rel="noreferrer" className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-red px-6 py-4 text-sm font-black uppercase tracking-[0.16em] text-white transition hover:-translate-y-1 hover:bg-red-600">
+            <a href={mapsUrl} target="_blank" rel="noreferrer" className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-red px-6 py-4 text-sm font-black uppercase tracking-[0.16em] text-white transition hover:-translate-y-1 hover:bg-red-700 lg:mt-0">
               <MapPin size={18} /> Ver ubicación
             </a>
           </div>
-          <div className="relative min-h-[330px] overflow-hidden rounded-[2.5rem] bg-stone-100 p-8">
-            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(226,31,38,0.95)_0_22%,transparent_22%_100%)]" />
-            <div className="absolute bottom-8 right-8 h-48 w-48 rounded-full bg-brand-red/15" />
-            <div className="relative max-w-lg">
-              <p className="text-sm font-black uppercase tracking-[0.24em] text-brand-red">Sushi bar urbano</p>
-              <h3 className="mt-4 text-4xl font-black leading-tight text-graphite">Retira, comparte y disfruta fresco en Talca.</h3>
-              <p className="mt-5 text-neutral-600">Carta breve, sabores potentes y preparación con estética Diagonal.</p>
+
+          <div className="grid gap-8 lg:grid-cols-2 lg:items-stretch">
+            <div className="min-h-[360px] overflow-hidden rounded-[2.5rem] bg-stone-100 shadow-2xl shadow-black/10">
+              <iframe
+                title="Mapa de Diagonal Sushi Talca"
+                src="https://www.google.com/maps?q=Av.%20Isidoro%20del%20Solar%20211,%20Talca,%20Chile&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="min-h-[360px] w-full"
+              />
+            </div>
+            <div className="relative min-h-[360px] overflow-hidden rounded-[2.5rem] bg-stone-100 p-8 shadow-2xl shadow-black/10 sm:p-10">
+              <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(226,31,38,0.95)_0_18%,transparent_18%_100%)]" />
+              <div className="absolute bottom-8 right-8 h-48 w-48 rounded-full bg-brand-red/15" />
+              <div className="relative max-w-lg">
+                <p className="text-sm font-black uppercase tracking-[0.24em] text-brand-red">Sushi bar urbano</p>
+                <h3 className="mt-4 text-4xl font-black leading-tight text-graphite">Retira, comparte y disfruta fresco en Talca.</h3>
+                <p className="mt-5 text-neutral-600">Carta breve, sabores potentes y preparación con estética Diagonal.</p>
+              </div>
             </div>
           </div>
         </div>

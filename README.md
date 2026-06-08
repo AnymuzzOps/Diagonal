@@ -20,7 +20,7 @@ La página no queda en blanco porque `index.html` carga React, ReactDOM, Babel y
 ## Configuración editable
 
 - Productos: editar el array `products` en `src/main.jsx`.
-- WhatsApp: cambiar `WHATSAPP_NUMBER` en `src/main.jsx`.
+- WhatsApp: el número actual es `+569 5319 4098`; puedes cambiar `WHATSAPP_NUMBER` en `src/main.jsx`.
 - Logo principal: reemplazar `public/logo-diagonal.svg` por el archivo definitivo si se requiere.
 
 ## Comandos
