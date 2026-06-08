@@ -73,7 +73,7 @@ const products = [
     name: 'Ceviche Mixto',
     description: 'Pescado, camarón, cebolla morada, cilantro y limón.',
     price: 8900,
-    image: 'https://images.unsplash.com/photo-1663186572387-c3c69a010d71?auto=format&fit=crop&w=900&q=80',
+    image: './public/ceviche-mixto.svg',
   },
   {
     id: 'ceviche-diagonal',
@@ -138,7 +138,7 @@ function Header({ cartCount, onCartOpen }) {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 shadow-2xl shadow-black/30 backdrop-blur-xl" style={{ background: 'rgba(10, 10, 12, 0.88)', backdropFilter: 'blur(14px)' }}>
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <button className="flex items-center gap-3" onClick={() => scrollToId('inicio')} aria-label="Ir al inicio">
-          <img src="./public/logo-diagonal.svg" alt="Diagonal Sushi" className="h-11 w-11 rounded-2xl" />
+          <img src="./public/logo-diagonal.svg" alt="Diagonal Sushi" className="h-12 w-12 rounded-2xl border border-white/20 bg-white/10 p-1 shadow-lg shadow-brand-red/20 sm:h-11 sm:w-11" />
           <div className="text-left leading-none">
             <span className="block text-lg font-black tracking-[0.16em] text-white">DIAGONAL</span>
             <span className="block text-xs font-bold tracking-[0.32em] text-brand-red">SUSHI</span>
@@ -186,9 +186,8 @@ function HeroBanner({ onCartOpen }) {
 
       <div className="relative mx-auto grid min-h-[calc(100vh-6rem)] max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
         <div className="max-w-2xl">
-          <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/10 px-4 py-2 backdrop-blur">
-            <span className="rounded-full bg-brand-red px-3 py-1 text-xs font-black uppercase tracking-[0.22em]">Nuevo</span>
-            <span className="text-sm font-semibold text-white/80">Edición limitada</span>
+          <div className="mb-6 inline-flex rounded-full border border-brand-red/30 bg-brand-red px-4 py-2 text-xs font-black uppercase tracking-[0.24em] text-white shadow-lg shadow-brand-red/25">
+            NUEVO
           </div>
           <h1 className="text-5xl font-black leading-[0.95] tracking-tight sm:text-7xl lg:text-8xl">
             Roll Especial <span className="text-brand-red">Diagonal</span>
@@ -208,15 +207,15 @@ function HeroBanner({ onCartOpen }) {
 
         <div className="relative mx-auto w-full max-w-2xl">
           <div className="absolute -inset-5 rotate-[-7deg] rounded-[3rem] bg-brand-red/90 blur-sm" />
-          <div className="absolute -right-6 -top-8 z-10 rounded-3xl bg-white px-5 py-4 text-graphite shadow-2xl">
+          <div className="absolute right-4 top-4 z-10 rounded-3xl border border-white/15 bg-graphite px-5 py-4 text-white shadow-2xl shadow-black/30 sm:-right-4 sm:-top-6">
             <p className="text-xs font-black uppercase tracking-[0.2em] text-brand-red">Desde</p>
-            <p className="text-3xl font-black">$6.900</p>
+            <p className="text-3xl font-black leading-none text-white">$6.900</p>
           </div>
           <div className="relative overflow-hidden rounded-[3rem] border border-white/10 bg-white p-3 shadow-2xl shadow-black/40">
             <img src="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&w=1300&q=85" alt="Roll Especial Diagonal" className="h-[360px] w-full rounded-[2.4rem] object-cover sm:h-[520px]" />
-            <div className="absolute bottom-8 left-8 rounded-3xl bg-graphite/90 px-5 py-4 backdrop-blur">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-brand-red">Diagonal Sushi</p>
-              <p className="mt-1 text-2xl font-black">Fresco · Urbano · Talca</p>
+            <div className="absolute bottom-6 left-6 right-6 rounded-3xl bg-white/95 px-5 py-4 text-graphite shadow-2xl backdrop-blur sm:bottom-8 sm:left-8 sm:right-auto">
+              <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-red">Diagonal Sushi</p>
+              <p className="mt-1 text-xl font-black sm:text-2xl">Sushi fresco para disfrutar en Talca.</p>
             </div>
           </div>
         </div>
@@ -241,9 +240,9 @@ function ProductCard({ product, quantity = 0, onAdd, onDecrease }) {
         <div className="mt-5 flex items-center justify-between gap-3">
           {quantity > 0 ? (
             <div className="flex items-center rounded-full bg-neutral-100 p-1">
-              <button onClick={() => onDecrease(product.id)} className="grid h-9 w-9 place-items-center rounded-full bg-white text-graphite shadow-sm" aria-label={`Disminuir ${product.name}`}><Minus size={16} /></button>
-              <span className="w-10 text-center text-sm font-black">{quantity}</span>
-              <button onClick={() => onAdd(product)} className="grid h-9 w-9 place-items-center rounded-full bg-brand-red text-white shadow-sm" aria-label={`Aumentar ${product.name}`}><Plus size={16} /></button>
+              <button onClick={() => onDecrease(product.id)} className="grid h-10 w-10 place-items-center rounded-full border border-neutral-200 bg-white text-graphite shadow-sm" aria-label={`Disminuir ${product.name}`}><Minus size={17} /></button>
+              <span className="w-10 text-center text-sm font-black text-graphite">{quantity}</span>
+              <button onClick={() => onAdd(product)} className="grid h-10 w-10 place-items-center rounded-full border border-red-700 bg-brand-red text-white shadow-sm shadow-brand-red/25" aria-label={`Aumentar ${product.name}`}><Plus size={17} /></button>
             </div>
           ) : (
             <span className="text-xs font-black uppercase tracking-[0.2em] text-neutral-400">Listo para pedir</span>
@@ -339,9 +338,9 @@ function CartDrawer({ isOpen, cartItems, subtotal, onClose, onAdd, onDecrease, o
                   <div className="mt-4 flex items-center justify-between">
                     <span className="text-sm font-bold text-neutral-500">Cantidad</span>
                     <div className="flex items-center rounded-full bg-neutral-100 p-1">
-                      <button onClick={() => onDecrease(product.id)} className="grid h-9 w-9 place-items-center rounded-full bg-white"><Minus size={16} /></button>
-                      <span className="w-10 text-center text-sm font-black">{quantity}</span>
-                      <button onClick={() => onAdd(product)} className="grid h-9 w-9 place-items-center rounded-full bg-brand-red text-white"><Plus size={16} /></button>
+                      <button onClick={() => onDecrease(product.id)} className="grid h-11 w-11 place-items-center rounded-full border border-neutral-200 bg-white text-graphite shadow-sm" aria-label={`Disminuir ${product.name}`}><Minus size={18} /></button>
+                      <span className="w-10 text-center text-sm font-black text-graphite">{quantity}</span>
+                      <button onClick={() => onAdd(product)} className="grid h-11 w-11 place-items-center rounded-full border-2 border-red-800 bg-brand-red text-white shadow-lg shadow-brand-red/25 transition hover:bg-red-700" aria-label={`Aumentar ${product.name}`}><Plus size={18} /></button>
                     </div>
                   </div>
                 </div>
@@ -350,13 +349,13 @@ function CartDrawer({ isOpen, cartItems, subtotal, onClose, onAdd, onDecrease, o
           )}
         </div>
 
-        <div className="border-t border-neutral-200 p-5">
+        <div className="border-t border-neutral-200 bg-white p-5 shadow-[0_-18px_40px_rgba(0,0,0,0.08)]">
           <div className="space-y-2 rounded-3xl bg-neutral-100 p-4">
             <div className="flex justify-between text-sm font-bold text-neutral-600"><span>Subtotal</span><span>{formatPrice(subtotal)}</span></div>
             <div className="flex justify-between text-xl font-black text-graphite"><span>Total final</span><span>{formatPrice(total)}</span></div>
           </div>
           {cartItems.length > 0 && (
-            <a href={whatsappLink} target="_blank" rel="noreferrer" className="mt-4 block w-full rounded-full bg-brand-red px-6 py-4 text-center text-sm font-black uppercase tracking-[0.16em] text-white shadow-xl shadow-brand-red/25 transition hover:-translate-y-0.5 hover:bg-red-700 hover:shadow-brand-red/40">
+            <a href={whatsappLink} target="_blank" rel="noreferrer" className="mt-4 block w-full rounded-full bg-brand-red px-6 py-4 text-center text-sm font-black uppercase tracking-[0.16em] text-white shadow-xl shadow-brand-red/30 ring-1 ring-red-700/20 transition hover:-translate-y-0.5 hover:bg-red-700 hover:shadow-brand-red/40">
               Finalizar pedido
             </a>
           )}
@@ -448,6 +447,19 @@ function Footer() {
   )
 }
 
+function FloatingCartButton({ cartCount, onCartOpen }) {
+  return (
+    <button
+      onClick={onCartOpen}
+      className="fixed bottom-5 right-5 z-50 flex h-16 w-16 items-center justify-center rounded-3xl border border-white/15 bg-brand-red text-white shadow-2xl shadow-brand-red/35 transition hover:-translate-y-1 hover:bg-red-700 sm:bottom-7 sm:right-7"
+      aria-label="Abrir carrito"
+    >
+      <ShoppingBag size={25} />
+      {cartCount > 0 && <span className="absolute -right-2 -top-2 grid h-7 min-w-7 place-items-center rounded-full border-2 border-brand-red bg-white px-2 text-xs font-black text-brand-red shadow-lg">{cartCount}</span>}
+    </button>
+  )
+}
+
 function App() {
   const [cart, setCart] = useState({})
   const [isCartOpen, setIsCartOpen] = useState(false)
@@ -491,6 +503,7 @@ function App() {
         <Locales />
       </main>
       <Footer />
+      <FloatingCartButton cartCount={cartCount} onCartOpen={() => setIsCartOpen(true)} />
       <CartDrawer isOpen={isCartOpen} cartItems={cartItems} subtotal={subtotal} onClose={() => setIsCartOpen(false)} onAdd={addToCart} onDecrease={decreaseQuantity} onRemove={removeFromCart} />
     </>
   )
