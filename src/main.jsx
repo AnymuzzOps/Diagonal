@@ -140,8 +140,8 @@ function Header({ cartCount, onCartOpen }) {
         <button className="flex items-center gap-3" onClick={() => scrollToId('inicio')} aria-label="Ir al inicio">
           <img src="./public/logo-diagonal.svg" alt="Diagonal Sushi" className="h-12 w-12 rounded-2xl border border-white/20 bg-white/10 p-1 shadow-lg shadow-brand-red/20 sm:h-11 sm:w-11" />
           <div className="text-left leading-none">
-            <span className="block text-lg font-black tracking-[0.16em] text-white">DIAGONAL</span>
-            <span className="block text-xs font-bold tracking-[0.32em] text-brand-red">SUSHI</span>
+            <span className="block text-lg font-black tracking-[0.16em] text-white" style={{ color: '#ffffff' }}>DIAGONAL</span>
+            <span className="block text-xs font-bold tracking-[0.32em] text-brand-red" style={{ color: '#e21f26' }}>SUSHI</span>
           </div>
         </button>
 
@@ -196,10 +196,10 @@ function HeroBanner({ onCartOpen }) {
             Sushi, ceviche y sabores frescos en el corazón de Talca.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <button onClick={() => scrollToId('carta')} className="rounded-full bg-brand-red px-8 py-4 text-sm font-black uppercase tracking-[0.18em] text-white shadow-2xl shadow-brand-red/30 transition hover:-translate-y-1 hover:bg-red-600">
+            <button onClick={() => scrollToId('carta')} className="rounded-full border-2 border-white bg-white px-8 py-4 text-sm font-black uppercase tracking-[0.18em] text-[#101114] shadow-2xl shadow-white/10 transition hover:-translate-y-1 hover:border-brand-red hover:bg-stone-100" style={{ background: '#ffffff', color: '#101114' }}>
               Ver carta
             </button>
-            <button onClick={onCartOpen} className="rounded-full border-2 border-white bg-white px-8 py-4 text-sm font-black uppercase tracking-[0.18em] text-[#101114] shadow-2xl shadow-black/20 transition hover:-translate-y-1 hover:border-brand-red hover:bg-brand-red hover:text-white hover:shadow-brand-red/30">
+            <button onClick={onCartOpen} className="rounded-full border-2 border-brand-red bg-brand-red px-8 py-4 text-sm font-black uppercase tracking-[0.18em] text-white shadow-2xl shadow-brand-red/30 transition hover:-translate-y-1 hover:bg-red-700 active:bg-red-800" style={{ background: '#e21f26', color: '#ffffff' }}>
               Ir al carrito
             </button>
           </div>
@@ -214,7 +214,9 @@ function HeroBanner({ onCartOpen }) {
           <div className="relative overflow-hidden rounded-[3rem] border border-white/10 bg-white p-3 shadow-2xl shadow-black/40">
             <img src="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&w=1300&q=85" alt="Roll Especial Diagonal" className="h-[360px] w-full rounded-[2.4rem] object-cover sm:h-[520px]" />
             <div className="absolute bottom-6 left-6 right-6 rounded-3xl bg-white/95 px-5 py-4 text-[#101114] shadow-2xl backdrop-blur sm:bottom-8 sm:left-8 sm:right-auto" style={{ background: 'rgba(255,255,255,0.96)', color: '#101114' }}>
-              <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-red" style={{ color: '#e21f26' }}>Diagonal Sushi</p>
+              <p className="text-sm font-black uppercase tracking-[0.18em]">
+                <span style={{ color: '#101114' }}>Diagonal</span> <span style={{ color: '#e21f26' }}>Sushi</span>
+              </p>
               <p className="mt-1 text-xl font-black text-[#101114] sm:text-2xl" style={{ color: '#101114' }}>Sushi fresco para disfrutar en Talca.</p>
             </div>
           </div>
@@ -247,7 +249,7 @@ function ProductCard({ product, quantity = 0, onAdd, onDecrease }) {
           ) : (
             <span className="text-xs font-black uppercase tracking-[0.2em] text-neutral-400">Listo para pedir</span>
           )}
-          <button onClick={() => onAdd(product)} className="rounded-full bg-graphite px-5 py-3 text-sm font-black uppercase tracking-[0.14em] text-white transition hover:bg-brand-red">
+          <button onClick={() => onAdd(product)} className="rounded-full bg-brand-red px-5 py-3 text-sm font-black uppercase tracking-[0.14em] text-white shadow-lg shadow-brand-red/20 transition hover:bg-red-700" style={{ background: '#e21f26', color: '#ffffff' }}>
             Agregar
           </button>
         </div>
@@ -501,12 +503,17 @@ function App() {
     })
   }
 
+  const addProductAndOpenCart = (product) => {
+    addToCart(product)
+    setIsCartOpen(true)
+  }
+
   return (
     <>
       <Header cartCount={cartCount} onCartOpen={() => setIsCartOpen(true)} />
       <main>
         <HeroBanner onCartOpen={() => setIsCartOpen(true)} />
-        <MenuSection cart={cart} onAdd={addToCart} onDecrease={decreaseQuantity} />
+        <MenuSection cart={cart} onAdd={addProductAndOpenCart} onDecrease={decreaseQuantity} />
         <Locales />
       </main>
       <Footer />
