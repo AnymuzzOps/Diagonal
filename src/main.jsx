@@ -1,4 +1,6 @@
-const { useMemo, useState } = React
+const { useMemo, useRef, useState } = React
+
+const LOGO_SRC = './logo.jpg'
 
 const Icon = ({ children, size = 20, className = '' }) => (
   <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -138,7 +140,7 @@ function Header({ cartCount, onCartOpen }) {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 shadow-2xl shadow-black/30 backdrop-blur-xl" style={{ background: 'rgba(10, 10, 12, 0.88)', backdropFilter: 'blur(14px)' }}>
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <button className="flex items-center gap-3" onClick={() => scrollToId('inicio')} aria-label="Ir al inicio">
-          <img src="./public/logo-diagonal.svg" alt="Diagonal Sushi" className="h-12 w-12 rounded-2xl border border-white/20 bg-white/10 p-1 shadow-lg shadow-brand-red/20 sm:h-11 sm:w-11" />
+          <img src={LOGO_SRC} alt="Diagonal Sushi" className="h-12 w-12 rounded-2xl border border-white/20 bg-white object-contain object-center p-1 shadow-lg shadow-brand-red/20 sm:h-11 sm:w-11" />
           <div className="text-left leading-none">
             <span className="block text-lg font-black tracking-[0.16em] text-white" style={{ color: '#ffffff' }}>DIAGONAL</span>
             <span className="block text-xs font-bold tracking-[0.32em] text-brand-red" style={{ color: '#e21f26' }}>SUSHI</span>
@@ -436,7 +438,7 @@ function Footer() {
     <footer className="bg-black px-4 py-10 text-white sm:px-6 lg:px-8">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 md:flex-row">
         <div className="flex items-center gap-3">
-          <img src="./public/logo-diagonal.svg" alt="Diagonal Sushi" className="h-10 w-10 rounded-xl" />
+          <img src={LOGO_SRC} alt="Diagonal Sushi" className="h-10 w-10 rounded-xl bg-white object-contain object-center p-1" />
           <p className="text-sm text-white/60">© 2026 Diagonal Sushi. Todos los derechos reservados.</p>
         </div>
         <div className="flex items-center gap-3">
@@ -472,6 +474,7 @@ function FloatingCartButton({ cartCount, onCartOpen }) {
 function App() {
   const [cart, setCart] = useState({})
   const [isCartOpen, setIsCartOpen] = useState(false)
+  const hasAutoOpenedCart = useRef(false)
 
   const cartItems = useMemo(() => Object.values(cart), [cart])
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0)
@@ -505,7 +508,11 @@ function App() {
 
   const addProductAndOpenCart = (product) => {
     addToCart(product)
-    setIsCartOpen(true)
+
+    if (!hasAutoOpenedCart.current) {
+      setIsCartOpen(true)
+      hasAutoOpenedCart.current = true
+    }
   }
 
   return (
