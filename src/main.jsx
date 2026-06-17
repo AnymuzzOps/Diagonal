@@ -1,4 +1,9 @@
-const { useMemo, useState } = React
+import React, { useMemo, useRef, useState } from 'react'
+import { createRoot } from 'react-dom/client'
+import './styles.css'
+import logoSrc from '../logo.jpg'
+
+const LOGO_SRC = logoSrc
 
 const Icon = ({ children, size = 20, className = '' }) => (
   <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -138,7 +143,7 @@ function Header({ cartCount, onCartOpen }) {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 shadow-2xl shadow-black/30 backdrop-blur-xl" style={{ background: 'rgba(10, 10, 12, 0.88)', backdropFilter: 'blur(14px)' }}>
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <button className="flex items-center gap-3" onClick={() => scrollToId('inicio')} aria-label="Ir al inicio">
-          <img src="./public/logo-diagonal.svg" alt="Diagonal Sushi" className="h-12 w-12 rounded-2xl border border-white/20 bg-white/10 p-1 shadow-lg shadow-brand-red/20 sm:h-11 sm:w-11" />
+          <img src={LOGO_SRC} alt="Diagonal Sushi" className="h-16 w-16 rounded-2xl border border-white/20 bg-white object-contain object-center p-0.5 shadow-lg shadow-brand-red/20 sm:h-16 sm:w-16" />
           <div className="text-left leading-none">
             <span className="block text-lg font-black tracking-[0.16em] text-white" style={{ color: '#ffffff' }}>DIAGONAL</span>
             <span className="block text-xs font-bold tracking-[0.32em] text-brand-red" style={{ color: '#e21f26' }}>SUSHI</span>
@@ -244,7 +249,7 @@ function ProductCard({ product, quantity = 0, onAdd, onDecrease }) {
             <div className="flex items-center rounded-full bg-neutral-100 p-1">
               <button onClick={() => onDecrease(product.id)} className="grid h-10 w-10 place-items-center rounded-full border border-neutral-200 bg-white text-graphite shadow-sm" aria-label={`Disminuir ${product.name}`}><Minus size={17} /></button>
               <span className="w-10 text-center text-sm font-black text-graphite">{quantity}</span>
-              <button onClick={() => onAdd(product)} className="grid h-10 w-10 place-items-center rounded-full border border-red-700 bg-brand-red text-white shadow-sm shadow-brand-red/25" aria-label={`Aumentar ${product.name}`}><Plus size={17} /></button>
+              <button onClick={() => onAdd(product)} className="grid h-10 w-10 place-items-center rounded-full border-2 border-brand-red bg-graphite text-white shadow-sm shadow-brand-red/25 transition hover:bg-neutral-800" style={{ background: '#101114', borderColor: '#e21f26', color: '#ffffff' }} aria-label={`Aumentar ${product.name}`}><Plus size={17} /></button>
             </div>
           ) : (
             <span className="text-xs font-black uppercase tracking-[0.2em] text-neutral-400">Listo para pedir</span>
@@ -342,7 +347,7 @@ function CartDrawer({ isOpen, cartItems, subtotal, onClose, onAdd, onDecrease, o
                     <div className="flex items-center rounded-full bg-neutral-100 p-1">
                       <button onClick={() => onDecrease(product.id)} className="grid h-11 w-11 place-items-center rounded-full border border-neutral-200 bg-white text-graphite shadow-sm" aria-label={`Disminuir ${product.name}`}><Minus size={18} /></button>
                       <span className="w-10 text-center text-sm font-black text-graphite">{quantity}</span>
-                      <button onClick={() => onAdd(product)} className="grid h-11 w-11 place-items-center rounded-full border-2 border-red-800 bg-brand-red text-white shadow-lg shadow-brand-red/25 transition hover:bg-red-700" aria-label={`Aumentar ${product.name}`}><Plus size={18} /></button>
+                      <button onClick={() => onAdd(product)} className="grid h-11 w-11 place-items-center rounded-full border-2 border-brand-red bg-graphite text-white shadow-lg shadow-brand-red/25 transition hover:bg-neutral-800" style={{ background: '#101114', borderColor: '#e21f26', color: '#ffffff' }} aria-label={`Aumentar ${product.name}`}><Plus size={18} /></button>
                     </div>
                   </div>
                 </div>
@@ -436,7 +441,7 @@ function Footer() {
     <footer className="bg-black px-4 py-10 text-white sm:px-6 lg:px-8">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 md:flex-row">
         <div className="flex items-center gap-3">
-          <img src="./public/logo-diagonal.svg" alt="Diagonal Sushi" className="h-10 w-10 rounded-xl" />
+          <img src={LOGO_SRC} alt="Diagonal Sushi" className="h-14 w-14 rounded-xl bg-white object-contain object-center p-0.5" />
           <p className="text-sm text-white/60">© 2026 Diagonal Sushi. Todos los derechos reservados.</p>
         </div>
         <div className="flex items-center gap-3">
@@ -472,6 +477,7 @@ function FloatingCartButton({ cartCount, onCartOpen }) {
 function App() {
   const [cart, setCart] = useState({})
   const [isCartOpen, setIsCartOpen] = useState(false)
+  const hasAutoOpenedCart = useRef(false)
 
   const cartItems = useMemo(() => Object.values(cart), [cart])
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0)
@@ -505,7 +511,11 @@ function App() {
 
   const addProductAndOpenCart = (product) => {
     addToCart(product)
-    setIsCartOpen(true)
+
+    if (!hasAutoOpenedCart.current) {
+      setIsCartOpen(true)
+      hasAutoOpenedCart.current = true
+    }
   }
 
   return (
@@ -523,4 +533,4 @@ function App() {
   )
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+createRoot(document.getElementById('root')).render(<App />)
