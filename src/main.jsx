@@ -1,6 +1,9 @@
-const { useMemo, useRef, useState } = React
+import React, { useMemo, useRef, useState } from 'react'
+import { createRoot } from 'react-dom/client'
+import './styles.css'
+import logoSrc from '../logo.jpg'
 
-const LOGO_SRC = './logo.jpg'
+const LOGO_SRC = logoSrc
 
 const Icon = ({ children, size = 20, className = '' }) => (
   <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -530,4 +533,4 @@ function App() {
   )
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+createRoot(document.getElementById('root')).render(<App />)
