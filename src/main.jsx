@@ -1,9 +1,9 @@
 import React, { useMemo, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './styles.css'
-import logoSrc from '../logo.jpg'
 
-const LOGO_SRC = logoSrc
+const ASSET_BASE = import.meta.env.BASE_URL
+const LOGO_SRC = `${ASSET_BASE}logo-diagonal.svg`
 
 const Icon = ({ children, size = 20, className = '' }) => (
   <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -78,7 +78,7 @@ const products = [
     name: 'Ceviche Mixto',
     description: 'Pescado, camarón, cebolla morada, cilantro y limón.',
     price: 8900,
-    image: './public/ceviche-mixto.svg',
+    image: `${ASSET_BASE}ceviche-mixto.svg`,
   },
   {
     id: 'ceviche-diagonal',
